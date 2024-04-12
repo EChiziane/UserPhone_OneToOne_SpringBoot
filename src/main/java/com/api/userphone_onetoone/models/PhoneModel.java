@@ -1,4 +1,4 @@
-package com.api.userphone_onetoone.models; // Correção na nomenclatura do pacote
+package com.api.userphone_onetoone.models;
 
 import jakarta.persistence.*;
 
@@ -10,38 +10,69 @@ import java.util.UUID;
 public class PhoneModel implements Serializable {
     private static final long serialVersionUID = 1L; // Serial version UID
 
-    @Id // Marca o campo como chave primária
-    @GeneratedValue(strategy = GenerationType.AUTO) // Gera automaticamente o valor para o campo
-    private UUID id; // Campo para armazenar o identificador
+    @Id // Marks the field as the primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) // Generates the value for the field automatically
+    private UUID id; // Field to store the identifier
 
     @Column(nullable = false, length = 30)
-    private String number;
+    private String number; // Field to store the phone number
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserModel user;
+    @OneToOne(fetch = FetchType.LAZY) // Defines a one-to-one association to UserModel, with lazy loading
+    @JoinColumn(name = "user_id") // Specifies the foreign key column used for the association
+    private UserModel user; // Associated user
 
-    // Getters e Setters
+    // Getters and Setters
+
+    /**
+     * Gets the ID of the phone.
+     *
+     * @return The ID of the phone.
+     */
     public UUID getId() {
         return id;
     }
 
+    /**
+     * Sets the ID of the phone.
+     *
+     * @param id The ID of the phone.
+     */
     public void setId(UUID id) {
         this.id = id;
     }
 
+    /**
+     * Gets the phone number.
+     *
+     * @return The phone number.
+     */
     public String getNumber() {
         return number;
     }
 
+    /**
+     * Sets the phone number.
+     *
+     * @param number The phone number.
+     */
     public void setNumber(String number) {
         this.number = number;
     }
 
+    /**
+     * Gets the user associated with the phone.
+     *
+     * @return The user associated with the phone.
+     */
     public UserModel getUser() {
         return user;
     }
 
+    /**
+     * Sets the user associated with the phone.
+     *
+     * @param user The user associated with the phone.
+     */
     public void setUser(UserModel user) {
         this.user = user;
     }
