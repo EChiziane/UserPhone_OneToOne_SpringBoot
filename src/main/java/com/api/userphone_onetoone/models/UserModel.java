@@ -17,7 +17,8 @@ public class UserModel implements Serializable {
     @Column(nullable = false, length = 30)
     private String name;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "phoneId")
     private PhoneModel phone;
 
     public PhoneModel getPhone() {

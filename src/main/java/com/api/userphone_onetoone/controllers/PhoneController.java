@@ -28,13 +28,6 @@ public class PhoneController { // Class name capitalized according to Java namin
     @PostMapping
     public ResponseEntity<Object> savePhone(@RequestBody PhoneDto phoneDto) {
         var phoneModel = new PhoneModel(); // Variable name in lowercase
-        var user = userServices.getUserById(phoneDto.getUserId());
-
-        // Check if user exists
-        if (user.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user Found");
-
-        phoneModel.setUser(user.get());
         BeanUtils.copyProperties(phoneDto, phoneModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(phoneServices.savePhone(phoneModel));
     }

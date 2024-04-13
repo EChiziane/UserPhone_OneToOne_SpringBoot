@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PhoneServices {
@@ -25,8 +27,16 @@ public class PhoneServices {
     }
 
     public List<PhoneModel> getPhones() {
-        return phoneRepository.findAll()
-                ;
+        return phoneRepository.findAll();
     }
+
+    public Optional getPhoneById(UUID id) {
+        return phoneRepository.findById(id);
+    }
+
+    public void deletePhoneById(UUID id) {
+        phoneRepository.deleteById(id);
+    }
+
 
 }
